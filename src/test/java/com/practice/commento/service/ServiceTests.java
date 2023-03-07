@@ -1,5 +1,6 @@
 package com.practice.commento.service;
 
+import com.practice.commento.dto.AccessCountResponse;
 import com.practice.commento.dto.Dto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,6 +13,9 @@ import java.util.List;
 public class ServiceTests {
     @Autowired
     private SampleService sampleService;
+
+    @Autowired
+    private EmployeeService employeeService;
 
     @Test
     @DisplayName("목록확인")
@@ -38,5 +42,20 @@ public class ServiceTests {
 
         int result = sampleService.insertItem(item);
         System.out.println(result);
+    }
+
+    @Test
+    @DisplayName("")
+    public void getMonthAccessCount() {
+        String date = "202201";
+        employeeService.getMonthAccessCount(date, "GENERAL");
+    }
+
+    @Test
+    @DisplayName("")
+    public void getYearAccessCount() {
+        String date = "2022";
+        AccessCountResponse response = employeeService.getYearAccessCount(date, "GENERAL");
+        System.out.println(response);
     }
 }

@@ -1,5 +1,6 @@
 package com.practice.commento.repository;
 
+import com.practice.commento.dto.AccessCountResponse;
 import com.practice.commento.dto.Dto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,6 +13,9 @@ import java.util.List;
 public class RepositoryTest {
     @Autowired
     private Sample sample;
+
+    @Autowired
+    private EmployeeMapper employeeMapper;
 
     @Test
     @DisplayName("리스트 조회")
@@ -38,5 +42,19 @@ public class RepositoryTest {
 
         int result = sample.insertDto(dto);
         System.out.println(result);
+    }
+
+    @Test
+    @DisplayName("항목")
+    public void getMonthAccessCount() {
+        AccessCountResponse result = employeeMapper.getMonthAccessCount("2022-01", "GENERAL");
+        System.out.println(result.getAccessCount());
+    }
+
+    @Test
+    @DisplayName("연 항목")
+    public void getYearAccessCount() {
+        AccessCountResponse response = employeeMapper.getYearAccessCount("2022", "GENERAL");
+        System.out.println(response);
     }
 }
